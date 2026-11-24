@@ -1,5 +1,10 @@
 // Cliente HTTP central. Todas las pantallas llaman a la API solo por aqui.
-const BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '');
+import { resolverApiUrl } from './config.js';
+const BASE = resolverApiUrl({
+  runtimeUrl: globalThis.ECORAEE_CONFIG?.API_URL,
+  buildUrl: import.meta.env.VITE_API_URL,
+  development: import.meta.env.DEV,
+});
 const CLAVE_TOKEN = 'ecoraee_token';
 
 export class ApiError extends Error {

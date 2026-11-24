@@ -12,7 +12,7 @@ await build({stdin:{contents:`export {Select,ErrorApi,Boton} from './src/compone
  export {AuthProvider,useAuth} from './src/auth/AuthContext.jsx'; export {sesion} from './src/api/client.js';
  export {default as Solicitudes} from './src/pages/Solicitudes.jsx'; export {default as Recepciones} from './src/pages/Recepciones.jsx';`,resolveDir:raiz},
  bundle:true,format:'esm',platform:'node',jsx:'automatic',external:['react','react/jsx-runtime'],
- define:{'import.meta.env.VITE_API_URL':'"http://localhost:8000"'},outfile:`${carpeta}/app.mjs`});
+ define:{'import.meta.env.VITE_API_URL':'"http://localhost:8000"','import.meta.env.DEV':'true'},outfile:`${carpeta}/app.mjs`});
 const app = await import(pathToFileURL(`${carpeta}/app.mjs`));
 test.after(async()=>rm(carpeta,{recursive:true,force:true}));
 const respuesta=(data)=>new Response(JSON.stringify(data),{headers:{'Content-Type':'application/json'}});

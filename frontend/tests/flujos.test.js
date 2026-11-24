@@ -19,7 +19,7 @@ await build({
     export { DispositivoNuevo, DispositivoDetalle } from './src/pages/Dispositivos.jsx';`, resolveDir: raiz },
   bundle: true, format: 'esm', platform: 'node', jsx: 'automatic',
   external: ['react', 'react/jsx-runtime'],
-  define: { 'import.meta.env.VITE_API_URL': '"http://localhost:8000"' },
+  define: { 'import.meta.env.VITE_API_URL': '"http://localhost:8000"', 'import.meta.env.DEV': 'true' },
   outfile: `${temporal}/app.mjs`,
 });
 const app = await import(pathToFileURL(`${temporal}/app.mjs`));

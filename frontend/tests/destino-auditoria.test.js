@@ -16,7 +16,7 @@ await build({
     export { default as ConsultaGlobal } from './src/pages/ConsultaGlobal.jsx';`, resolveDir: raiz },
   bundle: true, format: 'esm', platform: 'node', jsx: 'automatic',
   external: ['react', 'react/jsx-runtime'],
-  define: { 'import.meta.env.VITE_API_URL': '"http://localhost:8000"' }, outfile: `${temporal}/app.mjs`,
+  define: { 'import.meta.env.VITE_API_URL': '"http://localhost:8000"', 'import.meta.env.DEV': 'true' }, outfile: `${temporal}/app.mjs`,
 });
 const app = await import(pathToFileURL(`${temporal}/app.mjs`));
 test.after(async () => { await rm(temporal, { recursive: true, force: true }); });

@@ -16,7 +16,7 @@ await build({
     export { default as Grafo } from './src/pages/Grafo.jsx';`, resolveDir: raiz },
   bundle: true, format: 'esm', platform: 'node', jsx: 'automatic',
   external: ['react', 'react/jsx-runtime'],
-  define: { 'import.meta.env.VITE_API_URL': '"http://localhost:8000"' },
+  define: { 'import.meta.env.VITE_API_URL': '"http://localhost:8000"', 'import.meta.env.DEV': 'true' },
   plugins: [{ name: 'omitir-portada-visual', setup(b) {
     b.onLoad({ filter: /[\\/]landing[\\/]Landing\.jsx$/ }, () => ({ contents: 'export default function Landing() { return null; }', loader: 'js' }));
   } }],

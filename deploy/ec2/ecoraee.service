@@ -1,0 +1,23 @@
+[Unit]
+Description=EcoRAEE FastAPI
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ecoraee
+Group=ecoraee
+WorkingDirectory=/opt/ecoraee/backend
+EnvironmentFile=/etc/ecoraee/backend.env
+Environment=PYTHONUNBUFFERED=1
+ExecStartPre=/opt/ecoraee/venv/bin/python -m scripts.validar_despliegue
+ExecStart=/opt/ecoraee/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 1 --proxy-headers --forwarded-allow-ips=127.0.0.1
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
